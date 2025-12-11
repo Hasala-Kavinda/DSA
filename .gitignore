@@ -1,0 +1,16 @@
+# Ignore Java compiled class files
+*.class
+
+# Ignore executable files for Windows and other OSs
+*.exe
+
+# Optional: Ignore compiled native binaries or object files
+# Uncomment the lines below if you want to exclude compiled binaries without extensions
+# *.out
+# *.o
+# *~
+
+# Keep editor/project local files out of the repo (optional)
+.idea/
+.vscode/
+.DS_Store
