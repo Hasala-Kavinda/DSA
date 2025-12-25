@@ -1,44 +1,54 @@
+// time complexity : O(n log n)
 #include <vector>
 #include<array>
 #include <string>
 #include <iostream>
+#include <unordered_map>
+#include <algorithm>
 
 using namespace std;
 
 class Solution
 {
 public:
-    bool isAnagram(string t, string s)
+    vector<vector<string>> groupAnagrams(vector<string> &strs)
     {
+        vector<vector<string>> res;
 
-        if (t.length() != s.length()) return false;
-        
-        int letters[26] = {0};
+        unordered_map<string, vector<string>> mp;
 
-        for (int i = 0; i < t.length(); i++)
+        for (int i = 0; i < strs.size(); i++)
         {
-            letters[t.at(i) - 'a']++;
-            letters[s.at(i) - 'a']--;
+            string temp = strs[i];
+            sort(temp.begin(), temp.end());
 
+            mp[temp].push_back(strs[i]);
         }
-        for(int i : letters)
+
+        for (auto i : mp)
         {
-            if (i !=0)
-            {
-                return false;
-            }
-            
+            res.push_back(i.second);
         }
-        return true;
-} 
+        return res;
+    }
 };
 
 int main()
 {
-    Solution sol;
-    string s = "hasala";
-    string t = "hasala";
+    vector<string> input = {"eat", "tea", "tan", "ate", "nat", "bat"};
+    Solution solution;
 
-    cout << sol.isAnagram(s, t) << endl; 
+    vector<vector<string>> result;
+    result = solution.groupAnagrams(input);
+
+    for (const auto &group : result)
+    {
+        for (const string &str : group)
+        {
+            cout << str << " ";
+        }
+        cout << endl;
+    }
+
     return 0;
 }
